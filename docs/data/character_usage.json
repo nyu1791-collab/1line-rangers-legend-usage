@@ -1,0 +1,15 @@
+{
+  "schema_version": 1,
+  "updated_at": null,
+  "source": {
+    "name": "LINE Rangers Handbook PvP Tracker",
+    "url": "https://rangers.lerico.net/ja/pvp-tracker"
+  },
+  "league": "レジェンド",
+  "target_players": 100,
+  "sampled_players": 0,
+  "character_slots": 0,
+  "median_characters_per_player": 0,
+  "pages_scanned": 0,
+  "characters": []
+}
