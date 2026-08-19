@@ -40,10 +40,8 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
-      - name: Install Chromium and OS dependencies
-        run: |
-          python -m playwright install-deps chromium
-          python -m playwright install chromium
+      - name: Install Chromium
+        run: python -m playwright install chromium
 
       - name: Run scraper
         env:
