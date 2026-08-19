@@ -28,8 +28,8 @@ from playwright.sync_api import (
 TARGET_URL = "https://rangers.lerico.net/ja/pvp-tracker"
 SOURCE_NAME = "LINE Rangers Handbook PvP Tracker"
 
-TARGET_PLAYER_COUNT = int(os.environ.get("TARGET_PLAYER_COUNT", "100"))
-MIN_REQUIRED_PLAYERS = int(os.environ.get("MIN_REQUIRED_PLAYERS", "80"))
+TARGET_PLAYER_COUNT = int(os.environ.get("TARGET_PLAYER_COUNT", "200"))
+MIN_REQUIRED_PLAYERS = int(os.environ.get("MIN_REQUIRED_PLAYERS", "180"))
 DEBUG = os.environ.get("DEBUG", "0") == "1"
 
 OUTPUT_PATH = Path("docs/data/character_usage.json")
@@ -173,6 +173,24 @@ def character_key(image_url: str, name: str) -> str:
         return normalized_url
 
     return f"name:{name.casefold()}"
+
+
+def hydrate_lazy_images(page, row_selector: str) -> None:
+    """ページを段階的にスクロールし、遅延読み込み画像を表示させる。"""
+    try:
+        rows = page.locator(row_selector)
+        row_count = rows.count()
+        for index in range(row_count):
+            row = page.locator(row_selector).nth(index)
+            try:
+                row.scroll_into_view_if_needed(timeout=3_000)
+                page.wait_for_timeout(80)
+            except PlaywrightError:
+                continue
+        page.evaluate("window.scrollTo(0, 0)")
+        page.wait_for_timeout(500)
+    except PlaywrightError as error:
+        print(f"[WARN] 遅延読み込み処理に失敗しました: {error}")
 
 
 def save_json(path: Path, value) -> None:
@@ -528,13 +546,14 @@ def scrape(page) -> dict:
         }
     )
 
-    seen_players = set()
     player_sizes = []
     sampled_players = 0
     visited_pages = 0
 
     while sampled_players < TARGET_PLAYER_COUNT and visited_pages < MAX_PAGES:
         visited_pages += 1
+        hydrate_lazy_images(page, selector)
+
         rows = page.locator(selector)
         page_valid_players = 0
 
@@ -548,34 +567,6 @@ def scrape(page) -> dict:
             if not images:
                 continue
 
-            try:
-                row_text = re.sub(
-                    r"\s+",
-                    " ",
-                    row.inner_text(timeout=2_000),
-                ).strip()
-            except PlaywrightError:
-                row_text = ""
-
-            image_keys = sorted(
-                character_key(item["image"], item["name"])
-                for item in images
-            )
-
-            player_fingerprint_source = (
-                row_text[:150]
-                + "|"
-                + "|".join(image_keys)
-            )
-
-            player_fingerprint = hashlib.sha256(
-                player_fingerprint_source.encode("utf-8")
-            ).hexdigest()
-
-            if player_fingerprint in seen_players:
-                continue
-
-            seen_players.add(player_fingerprint)
             sampled_players += 1
             page_valid_players += 1
             player_sizes.append(len(images))
