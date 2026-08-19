@@ -1,15 +1,226 @@
 {
   "schema_version": 1,
-  "updated_at": null,
+  "updated_at": "2026-08-19T04:53:35.639573+00:00",
   "source": {
     "name": "LINE Rangers Handbook PvP Tracker",
     "url": "https://rangers.lerico.net/ja/pvp-tracker"
   },
   "league": "レジェンド",
   "target_players": 100,
-  "sampled_players": 0,
-  "character_slots": 0,
-  "median_characters_per_player": 0,
-  "pages_scanned": 0,
-  "characters": []
+  "sampled_players": 55,
+  "character_slots": 359,
+  "median_characters_per_player": 5,
+  "pages_scanned": 30,
+  "characters": [
+    {
+      "name": "u1556e af thum",
+      "image": "https://rangers.lerico.net/res/u1556e-af/u1556e-af-thum.png",
+      "count": 47,
+      "rate": 85.5,
+      "rank": 1
+    },
+    {
+      "name": "u1618e ka thum",
+      "image": "https://rangers.lerico.net/res/u1618e-ka/u1618e-ka-thum.png",
+      "count": 41,
+      "rate": 74.5,
+      "rank": 2
+    },
+    {
+      "name": "u1518e ron thum",
+      "image": "https://rangers.lerico.net/res/u1518e-ron/u1518e-ron-thum.png",
+      "count": 37,
+      "rate": 67.3,
+      "rank": 3
+    },
+    {
+      "name": "u1535e brown thum",
+      "image": "https://rangers.lerico.net/res/u1535e-brown/u1535e-brown-thum.png",
+      "count": 35,
+      "rate": 63.6,
+      "rank": 4
+    },
+    {
+      "name": "u1554e yf thum",
+      "image": "https://rangers.lerico.net/res/u1554e-yf/u1554e-yf-thum.png",
+      "count": 32,
+      "rate": 58.2,
+      "rank": 5
+    },
+    {
+      "name": "u1588e es thum",
+      "image": "https://rangers.lerico.net/res/u1588e-es/u1588e-es-thum.png",
+      "count": 32,
+      "rate": 58.2,
+      "rank": 6
+    },
+    {
+      "name": "u1571e qs thum",
+      "image": "https://rangers.lerico.net/res/u1571e-qs/u1571e-qs-thum.png",
+      "count": 26,
+      "rate": 47.3,
+      "rank": 7
+    },
+    {
+      "name": "u1550e moon thum",
+      "image": "https://rangers.lerico.net/res/u1550e-moon/u1550e-moon-thum.png",
+      "count": 25,
+      "rate": 45.5,
+      "rank": 8
+    },
+    {
+      "name": "u1539e en thum",
+      "image": "https://rangers.lerico.net/res/u1539e-en/u1539e-en-thum.png",
+      "count": 22,
+      "rate": 40.0,
+      "rank": 9
+    },
+    {
+      "name": "u1569e cony thum",
+      "image": "https://rangers.lerico.net/res/u1569e-cony/u1569e-cony-thum.png",
+      "count": 18,
+      "rate": 32.7,
+      "rank": 10
+    },
+    {
+      "name": "u1563e pew thum",
+      "image": "https://rangers.lerico.net/res/u1563e-pew/u1563e-pew-thum.png",
+      "count": 12,
+      "rate": 21.8,
+      "rank": 11
+    },
+    {
+      "name": "u1489e is thum",
+      "image": "https://rangers.lerico.net/res/u1489e-is/u1489e-is-thum.png",
+      "count": 10,
+      "rate": 18.2,
+      "rank": 12
+    },
+    {
+      "name": "u1603e sh thum",
+      "image": "https://rangers.lerico.net/res/u1603e-sh/u1603e-sh-thum.png",
+      "count": 4,
+      "rate": 7.3,
+      "rank": 13
+    },
+    {
+      "name": "u1329e moon thum",
+      "image": "https://rangers.lerico.net/res/u1329e-moon/u1329e-moon-thum.png",
+      "count": 2,
+      "rate": 3.6,
+      "rank": 14
+    },
+    {
+      "name": "u1333e mk thum",
+      "image": "https://rangers.lerico.net/res/u1333e-mk/u1333e-mk-thum.png",
+      "count": 2,
+      "rate": 3.6,
+      "rank": 15
+    },
+    {
+      "name": "u1370e boss thum",
+      "image": "https://rangers.lerico.net/res/u1370e-boss/u1370e-boss-thum.png",
+      "count": 2,
+      "rate": 3.6,
+      "rank": 16
+    },
+    {
+      "name": "u1397e rd thum",
+      "image": "https://rangers.lerico.net/res/u1397e-rd/u1397e-rd-thum.png",
+      "count": 2,
+      "rate": 3.6,
+      "rank": 17
+    },
+    {
+      "name": "u1408e iy thum",
+      "image": "https://rangers.lerico.net/res/u1408e-iy/u1408e-iy-thum.png",
+      "count": 2,
+      "rate": 3.6,
+      "rank": 18
+    },
+    {
+      "name": "u1505e so thum",
+      "image": "https://rangers.lerico.net/res/u1505e-so/u1505e-so-thum.png",
+      "count": 2,
+      "rate": 3.6,
+      "rank": 19
+    },
+    {
+      "name": "u1552e lf thum",
+      "image": "https://rangers.lerico.net/res/u1552e-lf/u1552e-lf-thum.png",
+      "count": 2,
+      "rate": 3.6,
+      "rank": 20
+    },
+    {
+      "name": "u1558e bf thum",
+      "image": "https://rangers.lerico.net/res/u1558e-bf/u1558e-bf-thum.png",
+      "count": 2,
+      "rate": 3.6,
+      "rank": 21
+    },
+    {
+      "name": "u1584e moon thum",
+      "image": "https://rangers.lerico.net/res/u1584e-moon/u1584e-moon-thum.png",
+      "count": 2,
+      "rate": 3.6,
+      "rank": 22
+    }
+  ],
+  "diagnostics": {
+    "selected_row_selector": "table tbody tr",
+    "selector_scores": {
+      "table tbody tr": {
+        "rows": 46,
+        "valid_samples": 15,
+        "image_counts": [
+          10,
+          5,
+          5,
+          8,
+          5,
+          5,
+          10,
+          5,
+          5,
+          9,
+          5,
+          5,
+          9,
+          5,
+          5
+        ]
+      },
+      "[role='rowgroup'] [role='row']": {
+        "rows": 0,
+        "valid_samples": 0,
+        "image_counts": []
+      },
+      ".ranking-table tbody tr": {
+        "rows": 0,
+        "valid_samples": 0,
+        "image_counts": []
+      },
+      ".ranking-list .ranking-row": {
+        "rows": 0,
+        "valid_samples": 0,
+        "image_counts": []
+      },
+      ".player-list .player-row": {
+        "rows": 0,
+        "valid_samples": 0,
+        "image_counts": []
+      },
+      ".player-card": {
+        "rows": 0,
+        "valid_samples": 0,
+        "image_counts": []
+      },
+      "[class*='ranking'] [class*='row']": {
+        "rows": 0,
+        "valid_samples": 0,
+        "image_counts": []
+      }
+    }
+  }
 }
