@@ -1,0 +1,87 @@
+# File: .github/workflows/update-character-usage.yml
+name: Update Character Usage
+
+on:
+  schedule:
+    - cron: "17 */6 * * *"
+
+  workflow_dispatch:
+    inputs:
+      debug:
+        description: "調査モード。HTMLや画像情報をArtifactへ保存し、公開データは更新しない"
+        required: false
+        default: false
+        type: boolean
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: update-character-usage
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Install Python dependencies
+        run: pip install -r requirements.txt
+
+      - name: Install Chromium
+        run: playwright install --with-deps chromium
+
+      - name: Run scraper
+        env:
+          DEBUG: ${{ inputs.debug && '1' || '0' }}
+          TARGET_PLAYER_COUNT: "100"
+          MIN_REQUIRED_PLAYERS: "80"
+        run: python scripts/scrape_character_usage.py
+
+      - name: Upload debug files
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: scraper-debug-${{ github.run_id }}
+          path: .artifacts/debug/
+          if-no-files-found: ignore
+          retention-days: 14
+
+      - name: Commit updated data
+        if: ${{ !inputs.debug }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          git add docs/data/character_usage.json
+
+          if git diff --staged --quiet; then
+            echo "集計データに変更はありません。"
+          else
+            git commit -m "Update legend character usage [skip ci]"
+            git push origin HEAD
+          fi
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload GitHub Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+
+      - name: Deploy GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
