@@ -47,7 +47,7 @@ jobs:
         env:
           DEBUG: ${{ inputs.debug && '1' || '0' }}
           TARGET_PLAYER_COUNT: "100"
-          MIN_REQUIRED_PLAYERS: "80"
+          MIN_REQUIRED_PLAYERS: "50"
         run: python scripts/scrape_character_usage.py
 
       - name: Upload debug files
