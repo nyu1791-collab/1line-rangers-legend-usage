@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-08-19T04:53:35.639573+00:00",
+  "updated_at": "2026-08-19T05:18:59.231197+00:00",
   "source": {
     "name": "LINE Rangers Handbook PvP Tracker",
     "url": "https://rangers.lerico.net/ja/pvp-tracker"
@@ -8,29 +8,29 @@
   "league": "レジェンド",
   "target_players": 100,
   "sampled_players": 55,
-  "character_slots": 359,
+  "character_slots": 360,
   "median_characters_per_player": 5,
   "pages_scanned": 30,
   "characters": [
     {
       "name": "u1556e af thum",
       "image": "https://rangers.lerico.net/res/u1556e-af/u1556e-af-thum.png",
-      "count": 47,
-      "rate": 85.5,
+      "count": 46,
+      "rate": 83.6,
       "rank": 1
     },
     {
       "name": "u1618e ka thum",
       "image": "https://rangers.lerico.net/res/u1618e-ka/u1618e-ka-thum.png",
-      "count": 41,
-      "rate": 74.5,
+      "count": 42,
+      "rate": 76.4,
       "rank": 2
     },
     {
       "name": "u1518e ron thum",
       "image": "https://rangers.lerico.net/res/u1518e-ron/u1518e-ron-thum.png",
-      "count": 37,
-      "rate": 67.3,
+      "count": 38,
+      "rate": 69.1,
       "rank": 3
     },
     {
@@ -43,15 +43,15 @@
     {
       "name": "u1554e yf thum",
       "image": "https://rangers.lerico.net/res/u1554e-yf/u1554e-yf-thum.png",
-      "count": 32,
-      "rate": 58.2,
+      "count": 31,
+      "rate": 56.4,
       "rank": 5
     },
     {
       "name": "u1588e es thum",
       "image": "https://rangers.lerico.net/res/u1588e-es/u1588e-es-thum.png",
-      "count": 32,
-      "rate": 58.2,
+      "count": 31,
+      "rate": 56.4,
       "rank": 6
     },
     {
@@ -71,8 +71,8 @@
     {
       "name": "u1539e en thum",
       "image": "https://rangers.lerico.net/res/u1539e-en/u1539e-en-thum.png",
-      "count": 22,
-      "rate": 40.0,
+      "count": 24,
+      "rate": 43.6,
       "rank": 9
     },
     {
@@ -85,8 +85,8 @@
     {
       "name": "u1563e pew thum",
       "image": "https://rangers.lerico.net/res/u1563e-pew/u1563e-pew-thum.png",
-      "count": 12,
-      "rate": 21.8,
+      "count": 14,
+      "rate": 25.5,
       "rank": 11
     },
     {
@@ -132,39 +132,32 @@
       "rank": 17
     },
     {
-      "name": "u1408e iy thum",
-      "image": "https://rangers.lerico.net/res/u1408e-iy/u1408e-iy-thum.png",
-      "count": 2,
-      "rate": 3.6,
-      "rank": 18
-    },
-    {
       "name": "u1505e so thum",
       "image": "https://rangers.lerico.net/res/u1505e-so/u1505e-so-thum.png",
       "count": 2,
       "rate": 3.6,
-      "rank": 19
+      "rank": 18
     },
     {
       "name": "u1552e lf thum",
       "image": "https://rangers.lerico.net/res/u1552e-lf/u1552e-lf-thum.png",
       "count": 2,
       "rate": 3.6,
-      "rank": 20
+      "rank": 19
     },
     {
       "name": "u1558e bf thum",
       "image": "https://rangers.lerico.net/res/u1558e-bf/u1558e-bf-thum.png",
       "count": 2,
       "rate": 3.6,
-      "rank": 21
+      "rank": 20
     },
     {
       "name": "u1584e moon thum",
       "image": "https://rangers.lerico.net/res/u1584e-moon/u1584e-moon-thum.png",
       "count": 2,
       "rate": 3.6,
-      "rank": 22
+      "rank": 21
     }
   ],
   "diagnostics": {
@@ -174,9 +167,6 @@
         "rows": 46,
         "valid_samples": 15,
         "image_counts": [
-          10,
-          5,
-          5,
           8,
           5,
           5,
@@ -184,6 +174,9 @@
           5,
           5,
           9,
+          5,
+          5,
+          10,
           5,
           5,
           9,
