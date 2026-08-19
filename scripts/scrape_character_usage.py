@@ -186,9 +186,7 @@ def save_json(path: Path, value) -> None:
 def collect_images(locator) -> list[dict]:
     """
     指定要素内のキャラクター画像候補をDOM順で取得する。
-
-    同じ画像URLが複数存在しても削除しない。
-    同一キャラクターを2体編成している場合、2件として返す。
+    同じ画像URLが複数存在しても削除しない（同一キャラの2体編成に対応）。
     """
     try:
         raw_images = locator.locator("img").evaluate_all(
@@ -237,10 +235,7 @@ def collect_images(locator) -> list[dict]:
         width = int(item.get("width") or 0)
         height = int(item.get("height") or 0)
 
-        if not src:
-            continue
-
-        if not item.get("visible"):
+        if not src or not item.get("visible"):
             continue
 
         source_lower = src.lower()
@@ -303,32 +298,17 @@ def extract_team_images(row) -> list[dict]:
 
 def hydrate_lazy_images(page, row_selector: str) -> None:
     """
-    全プレイヤー行を順番に画面内へ移動させ、
-    遅延読み込みされるキャラクター画像を読み込ませる。
+    ページ全体をまとめて迅速にスクロールし、
+    遅延読み込みされる画像を高速で発生させる。
     """
     try:
-        rows = page.locator(row_selector)
-        row_count = rows.count()
+        # 画面単位で高速スクロール（1行ずつの遅いループを解消）
+        for _ in range(5):
+            page.evaluate("window.scrollBy(0, window.innerHeight)")
+            page.wait_for_timeout(150)
 
-        for index in range(row_count):
-            try:
-                row = page.locator(row_selector).nth(index)
-                row.scroll_into_view_if_needed(timeout=3_000)
-                page.wait_for_timeout(100)
-            except PlaywrightError:
-                continue
-
-        page.evaluate(
-            """
-            () => {
-                window.scrollTo({
-                    top: 0,
-                    behavior: 'instant'
-                });
-            }
-            """
-        )
-        page.wait_for_timeout(1_000)
+        page.evaluate("window.scrollTo(0, 0)")
+        page.wait_for_timeout(300)
 
     except PlaywrightError as error:
         print(f"[WARN] 遅延読み込み処理に失敗しました: {error}")
@@ -601,14 +581,7 @@ def scrape(page) -> dict:
             if sampled_players >= TARGET_PLAYER_COUNT:
                 break
 
-            row = page.locator(selector).nth(index)
-
-            try:
-                row.scroll_into_view_if_needed(timeout=5_000)
-                page.wait_for_timeout(100)
-            except PlaywrightError:
-                pass
-
+            row = rows.nth(index)
             images = extract_team_images(row)
 
             if not images:
@@ -633,7 +606,7 @@ def scrape(page) -> dict:
             for item in images:
                 key = character_key(item["image"], item["name"])
 
-                # 編成数（2体いれば+2加算）
+                # 編成数（同一人物が2体採用していれば+2）
                 character_counts[key]["occurrence_count"] += 1
                 character_counts[key]["image"] = item["image"]
 
@@ -642,7 +615,7 @@ def scrape(page) -> dict:
 
                 player_character_keys.add(key)
 
-            # 採用人数（2体いてもプレイヤー1人として+1加算）
+            # 採用人数（2体採用していてもプレイヤー1人として+1）
             for key in player_character_keys:
                 character_counts[key]["player_count"] += 1
 
@@ -747,168 +720,4 @@ def scrape(page) -> dict:
     if expected_character_slots != total_character_slots:
         raise RuntimeError(
             f"キャラクター枠数の整合性検証に失敗しました。"
-            f"行から取得した枠数={total_character_slots}, "
-            f"キャラクター別合計={expected_character_slots}"
-        )
-
-    return {
-        "schema_version": 2,
-        "updated_at": datetime.now(timezone.utc).isoformat(),
-        "source": {
-            "name": SOURCE_NAME,
-            "url": TARGET_URL,
-        },
-        "league": "レジェンド",
-        "target_players": TARGET_PLAYER_COUNT,
-        "sampled_players": sampled_players,
-        "character_slots": total_character_slots,
-        "median_characters_per_player": (
-            median(player_sizes) if player_sizes else 0
-        ),
-        "pages_scanned": visited_pages,
-        "termination_reason": termination_reason,
-        "complete_target": sampled_players >= TARGET_PLAYER_COUNT,
-        "counting_method": {
-            "occurrence_count": "同一プレイヤー内の重複キャラクターを含む編成総数",
-            "player_count": "対象キャラクターを1体以上採用したプレイヤー数",
-            "slot_rate": "全編成枠に占める対象キャラクターの割合",
-            "adoption_rate": "集計プレイヤーに占める採用プレイヤーの割合",
-        },
-        "characters": characters,
-        "diagnostics": {
-            "selected_row_selector": selector,
-            "selector_scores": selector_diagnostics,
-        },
-    }
-
-
-def write_output(data: dict) -> None:
-    """一時ファイルを利用してJSONを安全に置き換える。"""
-    OUTPUT_PATH.parent.mkdir(parents=True, exist_ok=True)
-    temporary_path = OUTPUT_PATH.with_suffix(".json.tmp")
-
-    save_json(temporary_path, data)
-    temporary_path.replace(OUTPUT_PATH)
-
-
-def main() -> None:
-    response_log = []
-
-    with sync_playwright() as playwright:
-        browser = playwright.chromium.launch(
-            headless=True,
-            args=[
-                "--disable-dev-shm-usage",
-                "--no-sandbox",
-            ],
-        )
-
-        context = browser.new_context(
-            locale="ja-JP",
-            timezone_id="Asia/Tokyo",
-            viewport={
-                "width": 1440,
-                "height": 1200,
-            },
-            user_agent=(
-                "Mozilla/5.0 (X11; Linux x86_64) "
-                "AppleWebKit/537.36 (KHTML, like Gecko) "
-                "Chrome/131.0 Safari/537.36 "
-                "LegendUsageAggregator/1.0"
-            ),
-        )
-
-        page = context.new_page()
-        page.set_default_timeout(10_000)
-
-        def record_response(response) -> None:
-            try:
-                content_type = response.headers.get("content-type", "")
-
-                if (
-                    "json" in content_type.lower()
-                    or "javascript" in content_type.lower()
-                ):
-                    response_log.append(
-                        {
-                            "url": safe_debug_url(response.url),
-                            "status": response.status,
-                            "content_type": content_type,
-                        }
-                    )
-            except PlaywrightError:
-                pass
-
-        page.on("response", record_record:=record_response)
-
-        try:
-            response = page.goto(
-                TARGET_URL,
-                wait_until="domcontentloaded",
-                timeout=60_000,
-            )
-
-            if response is not None and response.status >= 400:
-                raise RuntimeError(
-                    f"対象ページがHTTP {response.status}を返しました。"
-                )
-
-            try:
-                page.wait_for_load_state(
-                    "networkidle",
-                    timeout=15_000,
-                )
-            except PlaywrightTimeoutError:
-                print(
-                    "[WARN] networkidle待機がタイムアウトしました。"
-                    "現在のDOMで処理を続行します。"
-                )
-
-            page.wait_for_timeout(3_000)
-            dismiss_common_dialogs(page)
-            select_legend_league(page)
-            page.wait_for_timeout(2_000)
-
-            if DEBUG:
-                selector, diagnostics = find_best_row_selector(page)
-                dump_debug(
-                    page,
-                    response_log,
-                    {
-                        "mode": "debug",
-                        "selected_row_selector": selector,
-                        "selector_scores": diagnostics,
-                    },
-                )
-                print("[DEBUG] 調査ファイルを.artifacts/debugへ保存しました。")
-                return
-
-            data = scrape(page)
-            write_output(data)
-
-            print(
-                f"[DONE] players={data['sampled_players']}, "
-                f"characters={len(data['characters'])}, "
-                f"output={OUTPUT_PATH}"
-            )
-
-        except Exception as error:
-            print(f"[ERROR] {error}", file=sys.stderr)
-
-            dump_debug(
-                page,
-                response_log,
-                {
-                    "mode": "error",
-                    "error": str(error),
-                },
-            )
-            raise
-
-        finally:
-            context.close()
-            browser.close()
-
-
-if __name__ == "__main__":
-    main()
+            
