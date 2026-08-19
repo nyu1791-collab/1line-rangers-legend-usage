@@ -46,7 +46,7 @@ jobs:
       - name: Run scraper
         env:
           DEBUG: ${{ inputs.debug && '1' || '0' }}
-          TARGET_PLAYER_COUNT: "100"
+          TARGET_PLAYER_COUNT: "200"
           MIN_REQUIRED_PLAYERS: "50"
         run: python scripts/scrape_character_usage.py
 
