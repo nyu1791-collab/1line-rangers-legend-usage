@@ -175,24 +175,6 @@ def character_key(image_url: str, name: str) -> str:
     return f"name:{name.casefold()}"
 
 
-def hydrate_lazy_images(page, row_selector: str) -> None:
-    """ページを段階的にスクロールし、遅延読み込み画像を表示させる。"""
-    try:
-        rows = page.locator(row_selector)
-        row_count = rows.count()
-        for index in range(row_count):
-            row = page.locator(row_selector).nth(index)
-            try:
-                row.scroll_into_view_if_needed(timeout=3_000)
-                page.wait_for_timeout(80)
-            except PlaywrightError:
-                continue
-        page.evaluate("window.scrollTo(0, 0)")
-        page.wait_for_timeout(500)
-    except PlaywrightError as error:
-        print(f"[WARN] 遅延読み込み処理に失敗しました: {error}")
-
-
 def save_json(path: Path, value) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
 
@@ -202,17 +184,24 @@ def save_json(path: Path, value) -> None:
 
 
 def collect_images(locator) -> list[dict]:
-    """要素内のキャラクター画像候補を取得する。"""
+    """
+    指定要素内のキャラクター画像候補をDOM順で取得する。
+
+    同じ画像URLが複数存在しても削除しない。
+    同一キャラクターを2体編成している場合、2件として返す。
+    """
     try:
         raw_images = locator.locator("img").evaluate_all(
             """
-            (images) => images.map((image) => {
+            (images) => images.map((image, index) => {
                 const rect = image.getBoundingClientRect();
+                const style = getComputedStyle(image);
                 const parent = image.closest(
                     '[class], [data-team], [data-type], td, li'
                 );
 
                 return {
+                    index: index,
                     src:
                         image.currentSrc ||
                         image.getAttribute('src') ||
@@ -226,7 +215,9 @@ def collect_images(locator) -> list[dict]:
                     visible:
                         rect.width > 0 &&
                         rect.height > 0 &&
-                        getComputedStyle(image).visibility !== 'hidden',
+                        style.display !== 'none' &&
+                        style.visibility !== 'hidden' &&
+                        Number(style.opacity || 1) !== 0,
                     context:
                         parent && typeof parent.className === 'string'
                             ? parent.className
@@ -246,7 +237,10 @@ def collect_images(locator) -> list[dict]:
         width = int(item.get("width") or 0)
         height = int(item.get("height") or 0)
 
-        if not src or not item.get("visible"):
+        if not src:
+            continue
+
+        if not item.get("visible"):
             continue
 
         source_lower = src.lower()
@@ -272,16 +266,11 @@ def collect_images(locator) -> list[dict]:
                 "name": name,
                 "width": width,
                 "height": height,
+                "dom_index": int(item.get("index") or 0),
             }
         )
 
-    unique = {}
-
-    for item in results:
-        key = character_key(item["image"], item["name"])
-        unique[key] = item
-
-    return list(unique.values())
+    return results
 
 
 def extract_team_images(row) -> list[dict]:
@@ -310,6 +299,39 @@ def extract_team_images(row) -> list[dict]:
         return row_images
 
     return []
+
+
+def hydrate_lazy_images(page, row_selector: str) -> None:
+    """
+    全プレイヤー行を順番に画面内へ移動させ、
+    遅延読み込みされるキャラクター画像を読み込ませる。
+    """
+    try:
+        rows = page.locator(row_selector)
+        row_count = rows.count()
+
+        for index in range(row_count):
+            try:
+                row = page.locator(row_selector).nth(index)
+                row.scroll_into_view_if_needed(timeout=3_000)
+                page.wait_for_timeout(100)
+            except PlaywrightError:
+                continue
+
+        page.evaluate(
+            """
+            () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'instant'
+                });
+            }
+            """
+        )
+        page.wait_for_timeout(1_000)
+
+    except PlaywrightError as error:
+        print(f"[WARN] 遅延読み込み処理に失敗しました: {error}")
 
 
 def find_best_row_selector(page) -> tuple[str | None, dict]:
@@ -529,7 +551,7 @@ def dump_debug(page, response_log: list[dict], extra: dict | None = None) -> Non
 
 
 def scrape(page) -> dict:
-    """プレイヤーごとの防衛チームを取得して集計する。"""
+    """レジェンド帯プレイヤーの防衛チームを集計する。"""
     selector, selector_diagnostics = find_best_row_selector(page)
 
     if selector is None:
@@ -540,89 +562,197 @@ def scrape(page) -> dict:
 
     character_counts = defaultdict(
         lambda: {
-            "count": 0,
+            "occurrence_count": 0,
+            "player_count": 0,
             "image": "",
             "name": "名称不明",
         }
     )
 
-    player_sizes = []
     sampled_players = 0
     visited_pages = 0
+    total_character_slots = 0
+    player_sizes = []
+    termination_reason = "unknown"
+    visited_page_signatures = set()
 
     while sampled_players < TARGET_PLAYER_COUNT and visited_pages < MAX_PAGES:
+        current_signature = page_signature(page, selector)
+
+        if current_signature in visited_page_signatures:
+            termination_reason = "duplicate_page"
+            print("[WARN] 既に処理したページが表示されたため、重複集計を防いで終了します。")
+            break
+
+        visited_page_signatures.add(current_signature)
         visited_pages += 1
+
         hydrate_lazy_images(page, selector)
 
         rows = page.locator(selector)
+        row_count = rows.count()
         page_valid_players = 0
+        page_skipped_rows = 0
+        page_character_slots = 0
 
-        for index in range(rows.count()):
+        print(f"[INFO] page={visited_pages}, row_candidates={row_count}")
+
+        for index in range(row_count):
             if sampled_players >= TARGET_PLAYER_COUNT:
                 break
 
-            row = rows.nth(index)
+            row = page.locator(selector).nth(index)
+
+            try:
+                row.scroll_into_view_if_needed(timeout=5_000)
+                page.wait_for_timeout(100)
+            except PlaywrightError:
+                pass
+
             images = extract_team_images(row)
 
             if not images:
+                page_skipped_rows += 1
+                continue
+
+            character_count = len(images)
+
+            if not (MIN_CHARACTERS_PER_PLAYER <= character_count <= MAX_CHARACTERS_PER_PLAYER):
+                page_skipped_rows += 1
                 continue
 
             sampled_players += 1
             page_valid_players += 1
-            player_sizes.append(len(images))
+            player_sizes.append(character_count)
+
+            total_character_slots += character_count
+            page_character_slots += character_count
+
+            player_character_keys = set()
 
             for item in images:
                 key = character_key(item["image"], item["name"])
-                character_counts[key]["count"] += 1
+
+                # 編成数（2体いれば+2加算）
+                character_counts[key]["occurrence_count"] += 1
                 character_counts[key]["image"] = item["image"]
 
                 if item["name"] != "名称不明":
                     character_counts[key]["name"] = item["name"]
 
+                player_character_keys.add(key)
+
+            # 採用人数（2体いてもプレイヤー1人として+1加算）
+            for key in player_character_keys:
+                character_counts[key]["player_count"] += 1
+
         print(
             f"[INFO] page={visited_pages}, "
-            f"page_players={page_valid_players}, "
-            f"total_players={sampled_players}"
+            f"row_candidates={row_count}, "
+            f"valid_players={page_valid_players}, "
+            f"skipped_rows={page_skipped_rows}, "
+            f"page_character_slots={page_character_slots}, "
+            f"total_players={sampled_players}, "
+            f"total_character_slots={total_character_slots}"
         )
 
         if sampled_players >= TARGET_PLAYER_COUNT:
+            termination_reason = "target_reached"
+            break
+
+        if page_valid_players == 0:
+            termination_reason = "no_valid_players"
+            print("[WARN] 現在のページから有効なプレイヤーを取得できなかったため終了します。")
             break
 
         if not go_to_next_page(page, selector):
+            termination_reason = "no_next_page"
+            print("[INFO] 次ページが見つからなかったため終了します。")
             break
+
+    if termination_reason == "unknown":
+        if visited_pages >= MAX_PAGES:
+            termination_reason = "max_pages_reached"
+        elif sampled_players >= TARGET_PLAYER_COUNT:
+            termination_reason = "target_reached"
 
     if sampled_players < MIN_REQUIRED_PLAYERS:
         raise RuntimeError(
-            f"品質基準を満たしません。取得人数={sampled_players}, "
-            f"必要人数={MIN_REQUIRED_PLAYERS}"
+            f"品質基準を満たしません。"
+            f"取得人数={sampled_players}, "
+            f"必要人数={MIN_REQUIRED_PLAYERS}, "
+            f"終了理由={termination_reason}, "
+            f"確認ページ数={visited_pages}, "
+            f"使用セレクタ={selector}"
         )
 
     characters = []
 
-    for item in character_counts.values():
-        count = int(item["count"])
+    for data in character_counts.values():
+        occurrence_count = int(data["occurrence_count"])
+        player_count = int(data["player_count"])
+
+        slot_rate = (
+            round(occurrence_count / total_character_slots * 100, 2)
+            if total_character_slots > 0
+            else 0
+        )
+
+        adoption_rate = (
+            round(player_count / sampled_players * 100, 1)
+            if sampled_players > 0
+            else 0
+        )
+
+        average_copies_when_used = (
+            round(occurrence_count / player_count, 2)
+            if player_count > 0
+            else 0
+        )
 
         characters.append(
             {
-                "name": item["name"],
-                "image": item["image"],
-                "count": count,
-                "rate": round(count / sampled_players * 100, 1),
+                "name": data["name"],
+                "image": data["image"],
+                "occurrence_count": occurrence_count,
+                "player_count": player_count,
+                "slot_rate": slot_rate,
+                "adoption_rate": adoption_rate,
+                "average_copies_when_used": average_copies_when_used,
+                "count": occurrence_count,
+                "rate": adoption_rate,
             }
         )
 
     characters.sort(
         key=lambda item: (
-            -item["count"],
+            -item["occurrence_count"],
+            -item["player_count"],
             item["name"].casefold(),
         )
     )
 
-    for rank, item in enumerate(characters, start=1):
-        item["rank"] = rank
+    previous_occurrence_count = None
+    previous_rank = 0
+
+    for index, item in enumerate(characters, start=1):
+        if item["occurrence_count"] != previous_occurrence_count:
+            previous_rank = index
+            previous_occurrence_count = item["occurrence_count"]
+
+        item["rank"] = previous_rank
+
+    expected_character_slots = sum(item["occurrence_count"] for item in characters)
+
+    if expected_character_slots != total_character_slots:
+        raise RuntimeError(
+            f"キャラクター枠数の整合性検証に失敗しました。"
+            f"行から取得した枠数={total_character_slots}, "
+            f"キャラクター別合計={expected_character_slots}"
+        )
 
     return {
-        "schema_version": 1,
+        "schema_version": 2,
         "updated_at": datetime.now(timezone.utc).isoformat(),
         "source": {
             "name": SOURCE_NAME,
@@ -631,11 +761,19 @@ def scrape(page) -> dict:
         "league": "レジェンド",
         "target_players": TARGET_PLAYER_COUNT,
         "sampled_players": sampled_players,
-        "character_slots": sum(player_sizes),
+        "character_slots": total_character_slots,
         "median_characters_per_player": (
             median(player_sizes) if player_sizes else 0
         ),
         "pages_scanned": visited_pages,
+        "termination_reason": termination_reason,
+        "complete_target": sampled_players >= TARGET_PLAYER_COUNT,
+        "counting_method": {
+            "occurrence_count": "同一プレイヤー内の重複キャラクターを含む編成総数",
+            "player_count": "対象キャラクターを1体以上採用したプレイヤー数",
+            "slot_rate": "全編成枠に占める対象キャラクターの割合",
+            "adoption_rate": "集計プレイヤーに占める採用プレイヤーの割合",
+        },
         "characters": characters,
         "diagnostics": {
             "selected_row_selector": selector,
@@ -701,7 +839,7 @@ def main() -> None:
             except PlaywrightError:
                 pass
 
-        page.on("response", record_response)
+        page.on("response", record_record:=record_response)
 
         try:
             response = page.goto(
