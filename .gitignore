@@ -1,0 +1,10 @@
+# File: .gitignore
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.env
+.artifacts/
+playwright-report/
+test-results/
+.DS_Store
