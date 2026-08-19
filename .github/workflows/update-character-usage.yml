@@ -25,7 +25,7 @@ concurrency:
 jobs:
   scrape:
     runs-on: ubuntu-latest
-    timeout-minutes: 20
+    timeout-minutes: 15
 
     steps:
       - name: Checkout repository
@@ -40,8 +40,10 @@ jobs:
       - name: Install Python dependencies
         run: pip install -r requirements.txt
 
-      - name: Install Chromium
-        run: playwright install chromium
+      - name: Install Chromium and OS dependencies
+        run: |
+          python -m playwright install-deps chromium
+          python -m playwright install chromium
 
       - name: Run scraper
         env:
