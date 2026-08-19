@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "updated_at": "2026-08-19T05:30:19.725711+00:00",
+  "updated_at": "2026-08-19T05:42:54.745465+00:00",
   "source": {
     "name": "LINE Rangers Handbook PvP Tracker",
     "url": "https://rangers.lerico.net/ja/pvp-tracker"
   },
   "league": "レジェンド",
-  "target_players": 100,
+  "target_players": 200,
   "sampled_players": 55,
   "character_slots": 360,
   "median_characters_per_player": 5,
