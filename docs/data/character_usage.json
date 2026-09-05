@@ -1,6 +1,6 @@
 {
   "schema_version": 2,
-  "updated_at": "2026-09-04T20:50:44.540164+00:00",
+  "updated_at": "2026-09-05T04:38:18.940943+00:00",
   "source": {
     "name": "LINE Rangers Handbook PvP Tracker",
     "url": "https://rangers.lerico.net/ja/pvp-tracker"
@@ -9,7 +9,7 @@
   "target_players": 200,
   "sampled_players": 200,
   "character_slots": 1725,
-  "unique_characters": 48,
+  "unique_characters": 47,
   "median_characters_per_player": 10.0,
   "pages_scanned": 15,
   "termination_reason": "target_reached",
@@ -24,170 +24,158 @@
     {
       "name": "u1556e af thum",
       "image": "https://rangers.lerico.net/res/u1556e-af/u1556e-af-thum.png",
-      "occurrence_count": 214,
-      "player_count": 179,
-      "adoption_rate": 89.5,
-      "slot_rate": 12.41,
+      "occurrence_count": 211,
+      "player_count": 176,
+      "adoption_rate": 88.0,
+      "slot_rate": 12.23,
       "average_copies_when_used": 1.2,
-      "count": 214,
-      "rate": 89.5,
+      "count": 211,
+      "rate": 88.0,
       "rank": 1
     },
     {
       "name": "u1535e brown thum",
       "image": "https://rangers.lerico.net/res/u1535e-brown/u1535e-brown-thum.png",
-      "occurrence_count": 168,
-      "player_count": 168,
-      "adoption_rate": 84.0,
-      "slot_rate": 9.74,
+      "occurrence_count": 170,
+      "player_count": 170,
+      "adoption_rate": 85.0,
+      "slot_rate": 9.86,
       "average_copies_when_used": 1.0,
-      "count": 168,
-      "rate": 84.0,
+      "count": 170,
+      "rate": 85.0,
       "rank": 2
     },
     {
       "name": "u1618e ka thum",
       "image": "https://rangers.lerico.net/res/u1618e-ka/u1618e-ka-thum.png",
-      "occurrence_count": 168,
-      "player_count": 164,
-      "adoption_rate": 82.0,
-      "slot_rate": 9.74,
+      "occurrence_count": 164,
+      "player_count": 160,
+      "adoption_rate": 80.0,
+      "slot_rate": 9.51,
       "average_copies_when_used": 1.02,
-      "count": 168,
-      "rate": 82.0,
-      "rank": 2
+      "count": 164,
+      "rate": 80.0,
+      "rank": 3
     },
     {
       "name": "u1554e yf thum",
       "image": "https://rangers.lerico.net/res/u1554e-yf/u1554e-yf-thum.png",
-      "occurrence_count": 157,
-      "player_count": 157,
-      "adoption_rate": 78.5,
-      "slot_rate": 9.1,
+      "occurrence_count": 160,
+      "player_count": 160,
+      "adoption_rate": 80.0,
+      "slot_rate": 9.28,
       "average_copies_when_used": 1.0,
-      "count": 157,
-      "rate": 78.5,
+      "count": 160,
+      "rate": 80.0,
       "rank": 4
     },
     {
       "name": "u1571e qs thum",
       "image": "https://rangers.lerico.net/res/u1571e-qs/u1571e-qs-thum.png",
-      "occurrence_count": 141,
-      "player_count": 141,
-      "adoption_rate": 70.5,
-      "slot_rate": 8.17,
+      "occurrence_count": 142,
+      "player_count": 142,
+      "adoption_rate": 71.0,
+      "slot_rate": 8.23,
       "average_copies_when_used": 1.0,
-      "count": 141,
-      "rate": 70.5,
+      "count": 142,
+      "rate": 71.0,
       "rank": 5
     },
     {
       "name": "u1518e ron thum",
       "image": "https://rangers.lerico.net/res/u1518e-ron/u1518e-ron-thum.png",
-      "occurrence_count": 137,
-      "player_count": 137,
-      "adoption_rate": 68.5,
-      "slot_rate": 7.94,
+      "occurrence_count": 140,
+      "player_count": 140,
+      "adoption_rate": 70.0,
+      "slot_rate": 8.12,
       "average_copies_when_used": 1.0,
-      "count": 137,
-      "rate": 68.5,
+      "count": 140,
+      "rate": 70.0,
       "rank": 6
     },
     {
       "name": "u1588e es thum",
       "image": "https://rangers.lerico.net/res/u1588e-es/u1588e-es-thum.png",
-      "occurrence_count": 136,
-      "player_count": 135,
-      "adoption_rate": 67.5,
-      "slot_rate": 7.88,
+      "occurrence_count": 137,
+      "player_count": 136,
+      "adoption_rate": 68.0,
+      "slot_rate": 7.94,
       "average_copies_when_used": 1.01,
-      "count": 136,
-      "rate": 67.5,
+      "count": 137,
+      "rate": 68.0,
       "rank": 7
     },
     {
       "name": "u1550e moon thum",
       "image": "https://rangers.lerico.net/res/u1550e-moon/u1550e-moon-thum.png",
-      "occurrence_count": 107,
-      "player_count": 107,
-      "adoption_rate": 53.5,
-      "slot_rate": 6.2,
+      "occurrence_count": 112,
+      "player_count": 112,
+      "adoption_rate": 56.0,
+      "slot_rate": 6.49,
       "average_copies_when_used": 1.0,
-      "count": 107,
-      "rate": 53.5,
+      "count": 112,
+      "rate": 56.0,
       "rank": 8
     },
     {
       "name": "u1539e en thum",
       "image": "https://rangers.lerico.net/res/u1539e-en/u1539e-en-thum.png",
-      "occurrence_count": 97,
-      "player_count": 97,
-      "adoption_rate": 48.5,
-      "slot_rate": 5.62,
+      "occurrence_count": 100,
+      "player_count": 100,
+      "adoption_rate": 50.0,
+      "slot_rate": 5.8,
       "average_copies_when_used": 1.0,
-      "count": 97,
-      "rate": 48.5,
+      "count": 100,
+      "rate": 50.0,
       "rank": 9
     },
     {
       "name": "u1569e cony thum",
       "image": "https://rangers.lerico.net/res/u1569e-cony/u1569e-cony-thum.png",
-      "occurrence_count": 63,
-      "player_count": 63,
-      "adoption_rate": 31.5,
-      "slot_rate": 3.65,
+      "occurrence_count": 60,
+      "player_count": 60,
+      "adoption_rate": 30.0,
+      "slot_rate": 3.48,
       "average_copies_when_used": 1.0,
-      "count": 63,
-      "rate": 31.5,
+      "count": 60,
+      "rate": 30.0,
       "rank": 10
     },
     {
       "name": "u1563e pew thum",
       "image": "https://rangers.lerico.net/res/u1563e-pew/u1563e-pew-thum.png",
-      "occurrence_count": 55,
-      "player_count": 55,
-      "adoption_rate": 27.5,
-      "slot_rate": 3.19,
+      "occurrence_count": 57,
+      "player_count": 57,
+      "adoption_rate": 28.5,
+      "slot_rate": 3.3,
       "average_copies_when_used": 1.0,
-      "count": 55,
-      "rate": 27.5,
+      "count": 57,
+      "rate": 28.5,
       "rank": 11
     },
     {
       "name": "u1489e is thum",
       "image": "https://rangers.lerico.net/res/u1489e-is/u1489e-is-thum.png",
-      "occurrence_count": 51,
-      "player_count": 51,
-      "adoption_rate": 25.5,
-      "slot_rate": 2.96,
+      "occurrence_count": 49,
+      "player_count": 49,
+      "adoption_rate": 24.5,
+      "slot_rate": 2.84,
       "average_copies_when_used": 1.0,
-      "count": 51,
-      "rate": 25.5,
+      "count": 49,
+      "rate": 24.5,
       "rank": 12
     },
     {
       "name": "u1631e sally thum",
       "image": "https://rangers.lerico.net/res/u1631e-sally/u1631e-sally-thum.png",
-      "occurrence_count": 37,
-      "player_count": 37,
-      "adoption_rate": 18.5,
-      "slot_rate": 2.14,
+      "occurrence_count": 40,
+      "player_count": 40,
+      "adoption_rate": 20.0,
+      "slot_rate": 2.32,
       "average_copies_when_used": 1.0,
-      "count": 37,
-      "rate": 18.5,
+      "count": 40,
+      "rate": 20.0,
       "rank": 13
-    },
-    {
-      "name": "u1434e boss thum",
-      "image": "https://rangers.lerico.net/res/u1434e-boss/u1434e-boss-thum.png",
-      "occurrence_count": 31,
-      "player_count": 31,
-      "adoption_rate": 15.5,
-      "slot_rate": 1.8,
-      "average_copies_when_used": 1.0,
-      "count": 31,
-      "rate": 15.5,
-      "rank": 14
     },
     {
       "name": "u1397e rd thum",
@@ -199,43 +187,31 @@
       "average_copies_when_used": 1.0,
       "count": 28,
       "rate": 14.0,
+      "rank": 14
+    },
+    {
+      "name": "u1434e boss thum",
+      "image": "https://rangers.lerico.net/res/u1434e-boss/u1434e-boss-thum.png",
+      "occurrence_count": 24,
+      "player_count": 24,
+      "adoption_rate": 12.0,
+      "slot_rate": 1.39,
+      "average_copies_when_used": 1.0,
+      "count": 24,
+      "rate": 12.0,
       "rank": 15
     },
     {
       "name": "u3006e cony thum",
       "image": "https://rangers.lerico.net/res/u3006e-cony/u3006e-cony-thum.png",
-      "occurrence_count": 15,
-      "player_count": 15,
-      "adoption_rate": 7.5,
-      "slot_rate": 0.87,
+      "occurrence_count": 14,
+      "player_count": 14,
+      "adoption_rate": 7.0,
+      "slot_rate": 0.81,
       "average_copies_when_used": 1.0,
-      "count": 15,
-      "rate": 7.5,
+      "count": 14,
+      "rate": 7.0,
       "rank": 16
-    },
-    {
-      "name": "u1364e cony thum",
-      "image": "https://rangers.lerico.net/res/u1364e-cony/u1364e-cony-thum.png",
-      "occurrence_count": 13,
-      "player_count": 13,
-      "adoption_rate": 6.5,
-      "slot_rate": 0.75,
-      "average_copies_when_used": 1.0,
-      "count": 13,
-      "rate": 6.5,
-      "rank": 17
-    },
-    {
-      "name": "u1468e james thum",
-      "image": "https://rangers.lerico.net/res/u1468e-james/u1468e-james-thum.png",
-      "occurrence_count": 11,
-      "player_count": 11,
-      "adoption_rate": 5.5,
-      "slot_rate": 0.64,
-      "average_copies_when_used": 1.0,
-      "count": 11,
-      "rate": 5.5,
-      "rank": 18
     },
     {
       "name": "u1603e sh thum",
@@ -247,7 +223,31 @@
       "average_copies_when_used": 1.0,
       "count": 11,
       "rate": 5.5,
+      "rank": 17
+    },
+    {
+      "name": "u1364e cony thum",
+      "image": "https://rangers.lerico.net/res/u1364e-cony/u1364e-cony-thum.png",
+      "occurrence_count": 10,
+      "player_count": 10,
+      "adoption_rate": 5.0,
+      "slot_rate": 0.58,
+      "average_copies_when_used": 1.0,
+      "count": 10,
+      "rate": 5.0,
       "rank": 18
+    },
+    {
+      "name": "u1468e james thum",
+      "image": "https://rangers.lerico.net/res/u1468e-james/u1468e-james-thum.png",
+      "occurrence_count": 9,
+      "player_count": 9,
+      "adoption_rate": 4.5,
+      "slot_rate": 0.52,
+      "average_copies_when_used": 1.0,
+      "count": 9,
+      "rate": 4.5,
+      "rank": 19
     },
     {
       "name": "u1522e po thum",
@@ -259,7 +259,7 @@
       "average_copies_when_used": 1.0,
       "count": 9,
       "rate": 4.5,
-      "rank": 20
+      "rank": 19
     },
     {
       "name": "u1265e re thum",
@@ -274,8 +274,8 @@
       "rank": 21
     },
     {
-      "name": "u1584e moon thum",
-      "image": "https://rangers.lerico.net/res/u1584e-moon/u1584e-moon-thum.png",
+      "name": "u1355e aq thum",
+      "image": "https://rangers.lerico.net/res/u1355e-aq/u1355e-aq-thum.png",
       "occurrence_count": 7,
       "player_count": 7,
       "adoption_rate": 3.5,
@@ -286,20 +286,8 @@
       "rank": 22
     },
     {
-      "name": "u1517h ron thum",
-      "image": "https://rangers.lerico.net/res/u1517h-ron/u1517h-ron-thum.png",
-      "occurrence_count": 6,
-      "player_count": 6,
-      "adoption_rate": 3.0,
-      "slot_rate": 0.35,
-      "average_copies_when_used": 1.0,
-      "count": 6,
-      "rate": 3.0,
-      "rank": 23
-    },
-    {
-      "name": "u1355e aq thum",
-      "image": "https://rangers.lerico.net/res/u1355e-aq/u1355e-aq-thum.png",
+      "name": "u1472e ma thum",
+      "image": "https://rangers.lerico.net/res/u1472e-ma/u1472e-ma-thum.png",
       "occurrence_count": 5,
       "player_count": 5,
       "adoption_rate": 2.5,
@@ -307,11 +295,71 @@
       "average_copies_when_used": 1.0,
       "count": 5,
       "rate": 2.5,
-      "rank": 24
+      "rank": 23
     },
     {
-      "name": "u1260e brown thum",
-      "image": "https://rangers.lerico.net/res/u1260e-brown/u1260e-brown-thum.png",
+      "name": "u1616e brown thum",
+      "image": "https://rangers.lerico.net/res/u1616e-brown/u1616e-brown-thum.png",
+      "occurrence_count": 5,
+      "player_count": 5,
+      "adoption_rate": 2.5,
+      "slot_rate": 0.29,
+      "average_copies_when_used": 1.0,
+      "count": 5,
+      "rate": 2.5,
+      "rank": 23
+    },
+    {
+      "name": "u1215h ron thum",
+      "image": "https://rangers.lerico.net/res/u1215h-ron/u1215h-ron-thum.png",
+      "occurrence_count": 4,
+      "player_count": 4,
+      "adoption_rate": 2.0,
+      "slot_rate": 0.23,
+      "average_copies_when_used": 1.0,
+      "count": 4,
+      "rate": 2.0,
+      "rank": 25
+    },
+    {
+      "name": "u1408e iy thum",
+      "image": "https://rangers.lerico.net/res/u1408e-iy/u1408e-iy-thum.png",
+      "occurrence_count": 4,
+      "player_count": 4,
+      "adoption_rate": 2.0,
+      "slot_rate": 0.23,
+      "average_copies_when_used": 1.0,
+      "count": 4,
+      "rate": 2.0,
+      "rank": 25
+    },
+    {
+      "name": "u1451e sg thum",
+      "image": "https://rangers.lerico.net/res/u1451e-sg/u1451e-sg-thum.png",
+      "occurrence_count": 4,
+      "player_count": 4,
+      "adoption_rate": 2.0,
+      "slot_rate": 0.23,
+      "average_copies_when_used": 1.0,
+      "count": 4,
+      "rate": 2.0,
+      "rank": 25
+    },
+    {
+      "name": "u1517h ron thum",
+      "image": "https://rangers.lerico.net/res/u1517h-ron/u1517h-ron-thum.png",
+      "occurrence_count": 4,
+      "player_count": 4,
+      "adoption_rate": 2.0,
+      "slot_rate": 0.23,
+      "average_copies_when_used": 1.0,
+      "count": 4,
+      "rate": 2.0,
+      "rank": 25
+    },
+    {
+      "name": "u1584e moon thum",
+      "image": "https://rangers.lerico.net/res/u1584e-moon/u1584e-moon-thum.png",
       "occurrence_count": 4,
       "player_count": 4,
       "adoption_rate": 2.0,
@@ -324,30 +372,6 @@
     {
       "name": "u1520e de thum",
       "image": "https://rangers.lerico.net/res/u1520e-de/u1520e-de-thum.png",
-      "occurrence_count": 4,
-      "player_count": 4,
-      "adoption_rate": 2.0,
-      "slot_rate": 0.23,
-      "average_copies_when_used": 1.0,
-      "count": 4,
-      "rate": 2.0,
-      "rank": 25
-    },
-    {
-      "name": "u1616e brown thum",
-      "image": "https://rangers.lerico.net/res/u1616e-brown/u1616e-brown-thum.png",
-      "occurrence_count": 4,
-      "player_count": 4,
-      "adoption_rate": 2.0,
-      "slot_rate": 0.23,
-      "average_copies_when_used": 1.0,
-      "count": 4,
-      "rate": 2.0,
-      "rank": 25
-    },
-    {
-      "name": "u1215h ron thum",
-      "image": "https://rangers.lerico.net/res/u1215h-ron/u1215h-ron-thum.png",
       "occurrence_count": 3,
       "player_count": 3,
       "adoption_rate": 1.5,
@@ -355,43 +379,7 @@
       "average_copies_when_used": 1.0,
       "count": 3,
       "rate": 1.5,
-      "rank": 28
-    },
-    {
-      "name": "u1408e iy thum",
-      "image": "https://rangers.lerico.net/res/u1408e-iy/u1408e-iy-thum.png",
-      "occurrence_count": 3,
-      "player_count": 3,
-      "adoption_rate": 1.5,
-      "slot_rate": 0.17,
-      "average_copies_when_used": 1.0,
-      "count": 3,
-      "rate": 1.5,
-      "rank": 28
-    },
-    {
-      "name": "u1472e ma thum",
-      "image": "https://rangers.lerico.net/res/u1472e-ma/u1472e-ma-thum.png",
-      "occurrence_count": 3,
-      "player_count": 3,
-      "adoption_rate": 1.5,
-      "slot_rate": 0.17,
-      "average_copies_when_used": 1.0,
-      "count": 3,
-      "rate": 1.5,
-      "rank": 28
-    },
-    {
-      "name": "u1537e ru thum",
-      "image": "https://rangers.lerico.net/res/u1537e-ru/u1537e-ru-thum.png",
-      "occurrence_count": 3,
-      "player_count": 3,
-      "adoption_rate": 1.5,
-      "slot_rate": 0.17,
-      "average_copies_when_used": 1.0,
-      "count": 3,
-      "rate": 1.5,
-      "rank": 28
+      "rank": 30
     },
     {
       "name": "u1552e lf thum",
@@ -403,7 +391,19 @@
       "average_copies_when_used": 1.0,
       "count": 3,
       "rate": 1.5,
-      "rank": 28
+      "rank": 30
+    },
+    {
+      "name": "u1260e brown thum",
+      "image": "https://rangers.lerico.net/res/u1260e-brown/u1260e-brown-thum.png",
+      "occurrence_count": 2,
+      "player_count": 2,
+      "adoption_rate": 1.0,
+      "slot_rate": 0.12,
+      "average_copies_when_used": 1.0,
+      "count": 2,
+      "rate": 1.0,
+      "rank": 32
     },
     {
       "name": "u1291e moon thum",
@@ -415,7 +415,43 @@
       "average_copies_when_used": 1.0,
       "count": 2,
       "rate": 1.0,
-      "rank": 33
+      "rank": 32
+    },
+    {
+      "name": "u1357e mg thum",
+      "image": "https://rangers.lerico.net/res/u1357e-mg/u1357e-mg-thum.png",
+      "occurrence_count": 2,
+      "player_count": 2,
+      "adoption_rate": 1.0,
+      "slot_rate": 0.12,
+      "average_copies_when_used": 1.0,
+      "count": 2,
+      "rate": 1.0,
+      "rank": 32
+    },
+    {
+      "name": "u1369h boss thum",
+      "image": "https://rangers.lerico.net/res/u1369h-boss/u1369h-boss-thum.png",
+      "occurrence_count": 2,
+      "player_count": 2,
+      "adoption_rate": 1.0,
+      "slot_rate": 0.12,
+      "average_copies_when_used": 1.0,
+      "count": 2,
+      "rate": 1.0,
+      "rank": 32
+    },
+    {
+      "name": "u1370e boss thum",
+      "image": "https://rangers.lerico.net/res/u1370e-boss/u1370e-boss-thum.png",
+      "occurrence_count": 2,
+      "player_count": 2,
+      "adoption_rate": 1.0,
+      "slot_rate": 0.12,
+      "average_copies_when_used": 1.0,
+      "count": 2,
+      "rate": 1.0,
+      "rank": 32
     },
     {
       "name": "u1534h brown thum",
@@ -427,7 +463,7 @@
       "average_copies_when_used": 1.0,
       "count": 2,
       "rate": 1.0,
-      "rank": 33
+      "rank": 32
     },
     {
       "name": "u1555h af thum",
@@ -439,7 +475,7 @@
       "average_copies_when_used": 1.0,
       "count": 2,
       "rate": 1.0,
-      "rank": 33
+      "rank": 32
     },
     {
       "name": "u1568h cony thum",
@@ -451,19 +487,7 @@
       "average_copies_when_used": 1.0,
       "count": 2,
       "rate": 1.0,
-      "rank": 33
-    },
-    {
-      "name": "u1615h brown thum",
-      "image": "https://rangers.lerico.net/res/u1615h-brown/u1615h-brown-thum.png",
-      "occurrence_count": 2,
-      "player_count": 2,
-      "adoption_rate": 1.0,
-      "slot_rate": 0.12,
-      "average_copies_when_used": 1.0,
-      "count": 2,
-      "rate": 1.0,
-      "rank": 33
+      "rank": 32
     },
     {
       "name": "u1617h ka thum",
@@ -475,7 +499,19 @@
       "average_copies_when_used": 1.0,
       "count": 2,
       "rate": 1.0,
-      "rank": 33
+      "rank": 32
+    },
+    {
+      "name": "u1620e ki thum",
+      "image": "https://rangers.lerico.net/res/u1620e-ki/u1620e-ki-thum.png",
+      "occurrence_count": 2,
+      "player_count": 2,
+      "adoption_rate": 1.0,
+      "slot_rate": 0.12,
+      "average_copies_when_used": 1.0,
+      "count": 2,
+      "rate": 1.0,
+      "rank": 32
     },
     {
       "name": "u1630h sally thum",
@@ -487,7 +523,7 @@
       "average_copies_when_used": 1.0,
       "count": 2,
       "rate": 1.0,
-      "rank": 33
+      "rank": 32
     },
     {
       "name": "u1276e cony thum",
@@ -499,55 +535,7 @@
       "average_copies_when_used": 1.0,
       "count": 1,
       "rate": 0.5,
-      "rank": 40
-    },
-    {
-      "name": "u1357e mg thum",
-      "image": "https://rangers.lerico.net/res/u1357e-mg/u1357e-mg-thum.png",
-      "occurrence_count": 1,
-      "player_count": 1,
-      "adoption_rate": 0.5,
-      "slot_rate": 0.06,
-      "average_copies_when_used": 1.0,
-      "count": 1,
-      "rate": 0.5,
-      "rank": 40
-    },
-    {
-      "name": "u1369h boss thum",
-      "image": "https://rangers.lerico.net/res/u1369h-boss/u1369h-boss-thum.png",
-      "occurrence_count": 1,
-      "player_count": 1,
-      "adoption_rate": 0.5,
-      "slot_rate": 0.06,
-      "average_copies_when_used": 1.0,
-      "count": 1,
-      "rate": 0.5,
-      "rank": 40
-    },
-    {
-      "name": "u1370e boss thum",
-      "image": "https://rangers.lerico.net/res/u1370e-boss/u1370e-boss-thum.png",
-      "occurrence_count": 1,
-      "player_count": 1,
-      "adoption_rate": 0.5,
-      "slot_rate": 0.06,
-      "average_copies_when_used": 1.0,
-      "count": 1,
-      "rate": 0.5,
-      "rank": 40
-    },
-    {
-      "name": "u1451e sg thum",
-      "image": "https://rangers.lerico.net/res/u1451e-sg/u1451e-sg-thum.png",
-      "occurrence_count": 1,
-      "player_count": 1,
-      "adoption_rate": 0.5,
-      "slot_rate": 0.06,
-      "average_copies_when_used": 1.0,
-      "count": 1,
-      "rate": 0.5,
-      "rank": 40
+      "rank": 43
     },
     {
       "name": "u1505e so thum",
@@ -559,7 +547,7 @@
       "average_copies_when_used": 1.0,
       "count": 1,
       "rate": 0.5,
-      "rank": 40
+      "rank": 43
     },
     {
       "name": "u1512e ty thum",
@@ -571,7 +559,19 @@
       "average_copies_when_used": 1.0,
       "count": 1,
       "rate": 0.5,
-      "rank": 40
+      "rank": 43
+    },
+    {
+      "name": "u1537e ru thum",
+      "image": "https://rangers.lerico.net/res/u1537e-ru/u1537e-ru-thum.png",
+      "occurrence_count": 1,
+      "player_count": 1,
+      "adoption_rate": 0.5,
+      "slot_rate": 0.06,
+      "average_copies_when_used": 1.0,
+      "count": 1,
+      "rate": 0.5,
+      "rank": 43
     },
     {
       "name": "u1573e hd thum",
@@ -583,19 +583,7 @@
       "average_copies_when_used": 1.0,
       "count": 1,
       "rate": 0.5,
-      "rank": 40
-    },
-    {
-      "name": "u1620e ki thum",
-      "image": "https://rangers.lerico.net/res/u1620e-ki/u1620e-ki-thum.png",
-      "occurrence_count": 1,
-      "player_count": 1,
-      "adoption_rate": 0.5,
-      "slot_rate": 0.06,
-      "average_copies_when_used": 1.0,
-      "count": 1,
-      "rate": 0.5,
-      "rank": 40
+      "rank": 43
     }
   ],
   "diagnostics": {
@@ -679,43 +667,43 @@
     "pages": [
       {
         "page": 1,
-        "valid_players": 11,
-        "character_slots": 105,
-        "load_attempts": 7,
-        "maximum_dom_rows": 46,
-        "collected_rows": 11
-      },
-      {
-        "page": 2,
-        "valid_players": 13,
-        "character_slots": 115,
-        "load_attempts": 7,
-        "maximum_dom_rows": 46,
-        "collected_rows": 13
-      },
-      {
-        "page": 3,
-        "valid_players": 13,
-        "character_slots": 115,
-        "load_attempts": 7,
-        "maximum_dom_rows": 46,
-        "collected_rows": 13
-      },
-      {
-        "page": 4,
-        "valid_players": 11,
-        "character_slots": 105,
-        "load_attempts": 7,
-        "maximum_dom_rows": 46,
-        "collected_rows": 11
-      },
-      {
-        "page": 5,
         "valid_players": 12,
         "character_slots": 110,
         "load_attempts": 7,
         "maximum_dom_rows": 46,
         "collected_rows": 12
+      },
+      {
+        "page": 2,
+        "valid_players": 11,
+        "character_slots": 105,
+        "load_attempts": 7,
+        "maximum_dom_rows": 46,
+        "collected_rows": 11
+      },
+      {
+        "page": 3,
+        "valid_players": 14,
+        "character_slots": 120,
+        "load_attempts": 7,
+        "maximum_dom_rows": 46,
+        "collected_rows": 14
+      },
+      {
+        "page": 4,
+        "valid_players": 12,
+        "character_slots": 110,
+        "load_attempts": 7,
+        "maximum_dom_rows": 46,
+        "collected_rows": 12
+      },
+      {
+        "page": 5,
+        "valid_players": 13,
+        "character_slots": 115,
+        "load_attempts": 7,
+        "maximum_dom_rows": 46,
+        "collected_rows": 13
       },
       {
         "page": 6,
@@ -727,19 +715,19 @@
       },
       {
         "page": 7,
-        "valid_players": 18,
-        "character_slots": 140,
+        "valid_players": 14,
+        "character_slots": 120,
         "load_attempts": 7,
         "maximum_dom_rows": 46,
-        "collected_rows": 18
+        "collected_rows": 14
       },
       {
         "page": 8,
-        "valid_players": 12,
-        "character_slots": 110,
+        "valid_players": 13,
+        "character_slots": 115,
         "load_attempts": 7,
         "maximum_dom_rows": 46,
-        "collected_rows": 12
+        "collected_rows": 13
       },
       {
         "page": 9,
@@ -751,19 +739,19 @@
       },
       {
         "page": 10,
-        "valid_players": 15,
-        "character_slots": 125,
-        "load_attempts": 7,
-        "maximum_dom_rows": 46,
-        "collected_rows": 15
-      },
-      {
-        "page": 11,
         "valid_players": 14,
         "character_slots": 120,
         "load_attempts": 7,
         "maximum_dom_rows": 46,
         "collected_rows": 14
+      },
+      {
+        "page": 11,
+        "valid_players": 15,
+        "character_slots": 125,
+        "load_attempts": 7,
+        "maximum_dom_rows": 46,
+        "collected_rows": 15
       },
       {
         "page": 12,
@@ -775,11 +763,11 @@
       },
       {
         "page": 13,
-        "valid_players": 12,
-        "character_slots": 110,
+        "valid_players": 14,
+        "character_slots": 120,
         "load_attempts": 7,
         "maximum_dom_rows": 46,
-        "collected_rows": 12
+        "collected_rows": 14
       },
       {
         "page": 14,
@@ -791,11 +779,11 @@
       },
       {
         "page": 15,
-        "valid_players": 9,
-        "character_slots": 70,
+        "valid_players": 8,
+        "character_slots": 65,
         "load_attempts": 1,
         "maximum_dom_rows": 46,
-        "collected_rows": 17
+        "collected_rows": 16
       }
     ]
   }
